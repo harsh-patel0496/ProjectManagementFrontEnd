@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useContext} from "react";
 import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -10,6 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
 import { CardHeader } from "@material-ui/core";
+import { ProjectContext } from './List'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: "100%"
@@ -43,12 +45,14 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Project(props) {
-  const {bg} = props
-   const classes = useStyles();
+  const {bg,project} = props
+  const classes = useStyles();
   const background = [classes.primary,classes.secondary,classes.ternary,classes.tour]
+  const {
+    handleEditProject
+  } = useContext(ProjectContext)
   
 
-  //console.log(getBgColor());
   return (
     <Card className={classes.root}>
       <CardActionArea onClick={() => console.log('test')}>
@@ -56,11 +60,18 @@ function Project(props) {
         <CardHeader
             classes={{
                 title: classes.title,
-                root: background[ 0],
+                root: background[0],
                 subheader: classes.title
             }}
-            title="Lizard"
-            subheader="By Harsh Patel"
+            title={project.title}
+            subheader={<div>
+              <Typography variant='body1'>
+                {`By ${project.client.name}`}
+              </Typography>
+              <Typography variant='body2'>
+                {project.start_date}
+              </Typography>
+            </div>}
         />
         
         {/* <CardMedia
@@ -88,7 +99,7 @@ function Project(props) {
                 Developers
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-                10
+                {project.totalDevelopers}
             </Typography>
           </Grid>
           <Divider
@@ -108,11 +119,11 @@ function Project(props) {
       </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
+        <Button size="small" color="primary" onClick={() => handleEditProject(project,props.index)}>
+          Edit
         </Button>
         <Button size="small" color="primary">
-          Learn More
+          View
         </Button>
       </CardActions>
     </Card>
