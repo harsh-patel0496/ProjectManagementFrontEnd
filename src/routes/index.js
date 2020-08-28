@@ -8,6 +8,7 @@ import Dashboard from '../components/dashboard'
 import Profile from '../components/settings/profile'
 import Projects from '../components/projects'
 import TaskList from '../components/tasklist'
+import ViewProject from '../components/projects/ViewProject'
 
 const Login = lazy(() => (
     import('../components/auth/login')
@@ -44,7 +45,9 @@ function Route() {
                 <GuestRoute path='/changePassword/:email' component={ChangePassword} exact={true} />
                 <PrivateRoute path='/settings/profile' component={Profile} layout={Layout} exact={true} />
                 <PrivateRoute path='/projects' component={Projects} layout={Layout} exact={true} />
+                <PrivateRoute path='/projects/view/:project' component={ViewProject} layout={Layout} exact={true} />
                 <PrivateRoute path='/tasks/:project' component={TaskList} layout={Layout} exact={true} />
+                
             </Switch>
         </Suspense>
     )

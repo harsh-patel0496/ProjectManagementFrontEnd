@@ -59,6 +59,12 @@ function List(props) {
         setSelectedProject({project,index})
     }
 
+    const handleViewProject = (project,index) => {
+        setProjectToRedux(project)
+        setSelectedProject({project,index})
+        props.history.push(`/projects/view/${project.id}`)
+    }
+
     const handleAddTask = (project,index) => {
         setProjectToRedux(project)
         setSelectedProject({project,index})
@@ -103,6 +109,7 @@ function List(props) {
         handleEditProject,
         handleAddComment,
         handleViewComment,
+        handleViewProject,
         handleAddTask,
         isOpenAddCommentDialog,
         setIsOpenAddCommentDialog,

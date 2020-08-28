@@ -14,6 +14,8 @@ import { ProjectContext } from './List';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ProjectMenu from './ProjectMenu'
+import BorderLinearProgress from '../../utils/styledComponent/BorderLinearProgress'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,6 +47,9 @@ const useStyles = makeStyles((theme) => ({
       color:"#5D92F4",
       fontSize:"1.1rem !important",
       fontWeight: 550
+  },
+  progress: {
+    marginTop: theme.spacing(2)
   }
 }));
 
@@ -65,6 +70,7 @@ function Project(props) {
     handleEditProject,
     handleAddComment,
     handleViewComment,
+    handleViewProject,
     handleAddTask
   } = useContext(ProjectContext)
   
@@ -139,12 +145,22 @@ function Project(props) {
             </Typography>
           </Grid>
         </Grid>
+        <Grid container alignItems="center" spacing={1} className={classes.progress}>
+          <Grid item md={12} xs={12}>
+            <Typography variant="h5">
+              Progress : {`${Math.round(project.progress)}%`}
+            </Typography>
+          </Grid>
+          <Grid item md={12} xs={12}>
+            <BorderLinearProgress variant="determinate" value={Math.round(project.progress)}/>
+          </Grid>
+        </Grid>
       </CardContent>
       <CardActions>
         <Button size="small" color="primary" onClick={() => handleEditProject(project,index)}>
           Edit
         </Button>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" onClick={() => handleViewProject(project,index)}>
           View
         </Button>
         <Button size="small" color="primary" onClick={() => handleViewComment(project,index)}>

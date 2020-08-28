@@ -14,7 +14,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import Typography from '@material-ui/core/Typography';
-
+import IconButton from '@material-ui/core/IconButton';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 import { Divider } from '@material-ui/core'
 import RootRef from "@material-ui/core/RootRef";
@@ -219,20 +220,23 @@ function Task(props) {
         <div className={classes.rootDiv}>
             <Card>
                 <CardHeader
-                    title = {<Typography variant="h4" >Tasks</Typography>}
-                    subheader= {<Typography variant="body1" >Project: {projectFromRudux.title}</Typography>}
-                    // action = {
-                    //     <SubmitButton
-                    //         variant="contained"
-                    //         color="primary"
-                    //         type="submit"
-                    //         endIcon={<PlaylistAddIcon />}
-                    //         onClick={() => toggleDrawer()}
-                    //     >
-                    //         Add New Project
+                    title = {
+                        <React.Fragment>
                             
-                    //     </SubmitButton>
-                    // }
+                            <Typography variant="h4" >
+                                
+                                Tasks
+                            </Typography>
+                        </React.Fragment>
+                    }
+                    subheader= {<Typography variant="body1" >Project: {projectFromRudux.title}</Typography>}
+                    avatar = {
+                        <IconButton aria-label="back" onClick={() => {
+                            props.history.push('/projects')
+                        }}>
+                            <ChevronLeftIcon />
+                        </IconButton>
+                    }
                 />
                 <CardContent>
                     <DragDropContext onDragEnd={ handleStop } >
