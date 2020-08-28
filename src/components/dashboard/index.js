@@ -33,7 +33,8 @@ function Dashboard(props) {
                 let info = {
                     clientsCount: response.data.assembly.clients_count,
                     managersCount: response.data.assembly.managers_count,
-                    developersCount: response.data.assembly.developers_count
+                    developersCount: response.data.assembly.developers_count,
+                    projectCount: response.data.assembly.projects_count
                 }
                 setPrimaryInfo({...info});
             }

@@ -262,7 +262,7 @@ function Form(props) {
                             type="submit"
                             size="large"
                         >
-                            {`Add Project`}
+                            {`Edit Project`}
                         </Button>
                         {/* <SubmitButton
                             fullWidth

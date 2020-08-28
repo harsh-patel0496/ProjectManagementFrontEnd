@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import Project from './Project'
 import Grid from "@material-ui/core/Grid";
 import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
-import  { Card,CardContent,CardHeader } from "@material-ui/core";
+import  { Card,CardContent,CardHeader, Typography } from "@material-ui/core";
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import SubmitButton from '../../utils/styledComponent/SubmitButton'
 import Drawer from '@material-ui/core/Drawer';
@@ -10,6 +10,11 @@ import AddProject from './AddProject'
 import EditProject from './EditProject'
 import DrawerLayout from './DrawerLayout'
 import { apiCall } from '../../utils/apiCall'
+import DialogComponent from '../../utils/styledComponent/DialogComponent'
+import AddComment from './AddComment'
+import CommentList from './CommentList'
+import useProject from '../../hooks/useProject'
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,10 +39,30 @@ function List(props) {
     const [projects,setProjects] = useState([]);
     const [selectedProject,setSelectedProject] = useState({});
     const [isOpenEditDrawer,setIsOpenEditDrawer] = useState(false)
-    
+    const [isOpenAddCommentDialog,setIsOpenAddCommentDialog] = useState(false)
+    const [isOpenListCommentDialog,setIsOpenListCommentDialog] = useState(false)
+
+    const [projectFromRudux,setProjectToRedux] = useProject();
+
     const handleEditProject = (project,index) => {
         toggleDrawer('edit')
         setSelectedProject({project,index})
+    }
+
+    const handleAddComment = (project,index) => {
+        setIsOpenAddCommentDialog(true)
+        setSelectedProject({project,index})
+    }
+
+    const handleViewComment = (project,index) => {
+        setIsOpenListCommentDialog(true)
+        setSelectedProject({project,index})
+    }
+
+    const handleAddTask = (project,index) => {
+        setProjectToRedux(project)
+        setSelectedProject({project,index})
+        props.history.push(`/tasks/${project.id}`)
     }
 
     const toggleDrawer = (module = 'add') => {
@@ -75,7 +100,14 @@ function List(props) {
         setSelectedProject,
         isOpenEditDrawer,
         setIsOpenEditDrawer,
-        handleEditProject
+        handleEditProject,
+        handleAddComment,
+        handleViewComment,
+        handleAddTask,
+        isOpenAddCommentDialog,
+        setIsOpenAddCommentDialog,
+        isOpenListCommentDialog,
+        setIsOpenListCommentDialog
     };
     return (
         <div className={classes.root}>
@@ -114,7 +146,7 @@ function List(props) {
             }
                 <Card>
                     <CardHeader
-                        title = "Projects"
+                        title = {<Typography variant="h2" >Projects</Typography>}
                         action = {
                             <SubmitButton
                                 variant="contained"
@@ -133,14 +165,43 @@ function List(props) {
                         <Grid container spacing={4}>
                             {projects.map((project,index) => {
                                 return (
-                                    <Grid item md={3} sm={6} xs={12} key = {index}>
-                                        <Project {...props} bg={index} index={index} project={project}/>
+                                    <Grid item md={4} sm={6} xs={12} key = {index}>
+                                        <Project 
+                                            {...props} 
+                                            bg={index}
+                                            index={index} 
+                                            project={project}
+                                        />
                                     </Grid>
                                 )
                             })}
                         </Grid>
                     </CardContent>
                 </Card>
+
+                {isOpenAddCommentDialog && <DialogComponent 
+                    isOpen= {isOpenAddCommentDialog} 
+                    setOpen={setIsOpenAddCommentDialog}
+                    title={`Add Comment`}
+                    footerActions={false}
+                    maxWidth="sm"
+                >
+                    <AddComment />
+                </DialogComponent>
+                
+                }
+
+                {isOpenListCommentDialog && <DialogComponent 
+                    isOpen= {isOpenListCommentDialog} 
+                    setOpen={setIsOpenListCommentDialog}
+                    title={`Comments`}
+                    footerActions={false}
+                    maxWidth="sm"
+                >
+                    <CommentList />
+                </DialogComponent>
+                
+                }
             </ProjectContext.Provider>
         </div>
     )

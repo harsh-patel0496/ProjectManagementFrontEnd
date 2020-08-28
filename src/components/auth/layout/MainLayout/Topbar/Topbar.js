@@ -37,6 +37,7 @@ const Topbar = props => {
       })}
     >
       <Toolbar>
+      <Hidden mdDown>
         <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -48,6 +49,7 @@ const Topbar = props => {
           >
             <MenuIcon />
           </IconButton>
+        </Hidden>
         <div className={classes.flexGrow} />
         <Hidden mdDown className={classes.flexGrow}>
           <IconButton color="inherit">
@@ -66,13 +68,13 @@ const Topbar = props => {
           >
             <InputIcon />
           </IconButton>
-          <IconButton
+          {/* <IconButton
             className={classes.signOutButton}
             color="inherit"
             onClick={handleLogout}
           >
             <InputIcon />
-          </IconButton>
+          </IconButton> */}
         </Hidden>
         <div className={classes.flexGrowRigth} />
         <Hidden lgUp>

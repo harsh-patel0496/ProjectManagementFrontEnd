@@ -54,11 +54,11 @@ function EditProject(props) {
             .required(requiredAuthMsg)
     });
     const [setNotification] = useNotification();
-    const handleAddProject = (values) => {
+    const handleEditProject = (values) => {
         const data = {...values}
         const options = {
-            method: 'post',
-            url: '/projects',
+            method: 'put',
+            url: `/projects/${initialValues.id}`,
             data: {
                 data
             }
@@ -94,8 +94,8 @@ function EditProject(props) {
                     title="Contemplative Reptile"
                 /> */}
                 <CardHeader 
-                    title = "Add New Project"
-                    subheader="You can edit this details further"
+                    title = "Edit Project"
+                    subheader={initialValues.title}
                 />
                 <CardContent>
                     <Formik
@@ -103,7 +103,7 @@ function EditProject(props) {
                         initialValues={initialValues}
                         validationSchema={validationSchema}
                         onSubmit = { values => {
-                            handleAddProject(values)
+                            handleEditProject(values)
                         }}
                     >
                     </Formik>

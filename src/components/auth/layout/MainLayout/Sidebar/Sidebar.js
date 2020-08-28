@@ -32,7 +32,7 @@ const Sidebar = props => {
   const pages = [
     {
       title: 'Dashboard',
-      href: '/',
+      href: '/dashboard',
       icon: <DashboardIcon />
     },
     {
@@ -61,6 +61,11 @@ const Sidebar = props => {
       icon: <ChatIcon />
     },
     {
+      title: 'Projects',
+      href: '/projects',
+      icon: <AssignmentTurnedInIcon />
+    },
+    {
       title: 'Settings',
       collapse: true,
       collapseItems: [{
@@ -72,11 +77,7 @@ const Sidebar = props => {
       href: '/settings',
       icon: <SettingsIcon />
     },
-    {
-      title: 'Projects',
-      href: '/projects',
-      icon: <AssignmentTurnedInIcon />
-    }
+    
   ];
 
   return (

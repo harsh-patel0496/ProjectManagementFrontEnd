@@ -72,10 +72,12 @@ function DialogComponent(props) {
   return (
     <div>
       <Dialog 
+        fullWidth={true}
         onClose={handleClose} 
         aria-labelledby="customized-dialog-title" 
         open={isOpen}
         TransitionComponent={Transition}
+        maxWidth="sm"
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           <Typography variant="h5">

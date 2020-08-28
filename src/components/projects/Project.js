@@ -10,7 +10,10 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
 import { CardHeader } from "@material-ui/core";
-import { ProjectContext } from './List'
+import { ProjectContext } from './List';
+import IconButton from '@material-ui/core/IconButton';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import ProjectMenu from './ProjectMenu'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     //paddingTop: 0
   },
   primary: {
-      backgroundColor: "#eff2f5"
+      //backgroundColor: "#eff2f5"
   },
   secondary: {
     backgroundColor: "#5D92F4"
@@ -39,23 +42,43 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#FB8C00"
   },
   title:{
-      color:"black"
+      color:"#5D92F4",
+      fontSize:"1.1rem !important",
+      fontWeight: 550
   }
 }));
 
+export const MenuContext = React.createContext();
 
 function Project(props) {
-  const {bg,project} = props
+  const {bg,project,index} = props
   const classes = useStyles();
   const background = [classes.primary,classes.secondary,classes.ternary,classes.tour]
+
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
   const {
-    handleEditProject
+    handleEditProject,
+    handleAddComment,
+    handleViewComment,
+    handleAddTask
   } = useContext(ProjectContext)
   
-
+  const MenuContextValue = {
+    anchorEl,
+    setAnchorEl,
+    handleAddComment,
+    handleAddTask,
+    project,
+    index
+  }
   return (
     <Card className={classes.root}>
-      <CardActionArea onClick={() => console.log('test')}>
+      {/* <CardActionArea onClick={() => console.log('test')}> */}
         
         <CardHeader
             classes={{
@@ -63,9 +86,17 @@ function Project(props) {
                 root: background[0],
                 subheader: classes.title
             }}
+            action={
+              <MenuContext.Provider value={MenuContextValue}>
+                <IconButton aria-label="settings" onClick={handleClick}>
+                  <MoreVertIcon />
+                </IconButton>
+                <ProjectMenu />
+              </MenuContext.Provider>
+            }
             title={project.title}
             subheader={<div>
-              <Typography variant='body1'>
+              <Typography variant='body1' >
                 {`By ${project.client.name}`}
               </Typography>
               <Typography variant='body2'>
@@ -74,32 +105,24 @@ function Project(props) {
             </div>}
         />
         
-        {/* <CardMedia
-          className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
-        /> */}
-        {/* <CardContent className={classes.cardHeader}>
-          <Grid container alignItems="center">
-            <Grid item md={12} xs={12}>
-              <Typography gutterBottom variant="h5" component="h2" color="inherit">
-                Lizard
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p" color="inherit">
-                
-              </Typography>
-            </Grid>
-          </Grid>
-        </CardContent> */}
+      {/* </CardActionArea> */}
       
       <CardContent className={classes.cardContent}>
-        <Grid container alignItems="center" >
-          <Grid item md={4} xs={4}>
+        <Grid container alignItems="center" spacing={3}>
+          <Grid item md={12} xs={12}>
+          <Typography gutterBottom variant="h5" component="h2">
+                Description:
+            </Typography>
+            <Typography variant="body1" color="textSecondary" component="p">
+                {project.description}
+            </Typography>
+          </Grid>
+          <Grid item md={5} xs={5}>
             <Typography gutterBottom variant="h5" component="h2">
-                Developers
+                Team Members
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-                {project.totalDevelopers}
+                {project.totalTeamMembers}
             </Typography>
           </Grid>
           <Divider
@@ -107,23 +130,25 @@ function Project(props) {
             flexItem
             className={classes.divider}
           />
-          <Grid item md={4} xs={4}>
+          <Grid item md={5} xs={5}>
             <Typography gutterBottom variant="h5" component="h2">
                 Tasks
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-                10
+                {project.tasks_count}
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
-      </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary" onClick={() => handleEditProject(project,props.index)}>
+        <Button size="small" color="primary" onClick={() => handleEditProject(project,index)}>
           Edit
         </Button>
         <Button size="small" color="primary">
           View
+        </Button>
+        <Button size="small" color="primary" onClick={() => handleViewComment(project,index)}>
+          Comments
         </Button>
       </CardActions>
     </Card>

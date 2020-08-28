@@ -29,7 +29,8 @@ const Topbar = props => {
       })}
     >
       <Toolbar>
-        <IconButton
+        <Hidden>
+          <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleToggleDrawer}
@@ -40,6 +41,7 @@ const Topbar = props => {
           >
             <MenuIcon />
           </IconButton>
+        </Hidden>
         <div className={classes.flexGrow} />
         <Hidden mdDown className={classes.flexGrow}>
           <IconButton color="inherit">
