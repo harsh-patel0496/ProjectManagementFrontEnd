@@ -8,13 +8,13 @@ export const useStyleTaskComponent = makeStyles(theme => ({
         
     },
     border1:{
-      borderTop: '3px solid #00D0BD',
+      borderTop: '3px solid #42A5F5',
     },
     border2:{
-      borderTop: '3px solid #2E77FF',
+      borderTop: '3px solid #66BB6A',
     },
     border3:{
-      borderTop: '3px solid #00BD13',
+      borderTop: '3px solid #63809C',
     },
     rootDiv: {
         margin: theme.spacing(3),

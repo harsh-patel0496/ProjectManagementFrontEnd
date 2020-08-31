@@ -9,6 +9,7 @@ import FilesUploaded from './FilesUploaded'
 import Progress from './Progress'
 import PrimaryDetails from './PrimaryDetails'
 import Comments from './Comments'
+import Tasks from './Tasks'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,8 +29,6 @@ function View(props) {
     const classes = useStyles();
     const [projectFromRudux] = useProject()
     const [project,setProject] = useState(projectFromRudux)
-
-    console.log(project)
     return (
         <div className={classes.root}>
             <Card>
@@ -54,11 +53,13 @@ function View(props) {
                         <Grid item md={8} sm={12}>
                             <Description description={project.description}/>
                             <FilesUploaded />
+                            <Tasks project={project} />
                         </Grid>
                         <Grid item md={4} sm={12}>
                             <PrimaryDetails project={project}/>
                             <Progress progress={project.progress}/>
                             <Comments project={project.id}/>
+                            
                         </Grid>
                     </Grid>
                 </CardContent>

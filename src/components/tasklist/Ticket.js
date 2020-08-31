@@ -15,16 +15,11 @@ function Ticket(props) {
     } = props
 
     const getPreetyDate = (date) => {
-        console.log(date)
         var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         let taskDate = new Date(date);
-        console.log(taskDate)
         const preetyDate = `${months[taskDate.getMonth()]} ${taskDate.getDate()}, ${taskDate.getFullYear()}`;
         return preetyDate;
     }
-
-    console.log('task',task)
-    console.log('taskType',task.type)
     return (
         <Draggable
             key={task.id} draggableId={`draggable${task.id}`} index={index}
