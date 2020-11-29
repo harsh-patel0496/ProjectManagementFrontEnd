@@ -1,5 +1,8 @@
 import React,{useState,useEffect,useReducer} from 'react'
-import MaterialTable,{ MTableToolbar,MTableHeader } from 'material-table'
+import MaterialTable,{ 
+    MTableToolbar,
+    //MTableHeader 
+} from 'material-table'
 import DialogComponent from '../../../utils/styledComponent/DialogComponent'
 import AddEmployee from './AddEmployee'
 import EditEmployee from './EditEmployee'
@@ -99,7 +102,7 @@ function List(props) {
                             }
                             apiCall(options).then((response) => {
                                 let notificationOptions = {};
-                                if(response.data && response.data.employee == 1){
+                                if(response.data && response.data.employee === 1){
                                     notificationOptions = {
                                         open: true,
                                         message: 'Employee has been deleted!',

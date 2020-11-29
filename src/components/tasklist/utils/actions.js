@@ -18,10 +18,12 @@ export const selectContainer = (source,destination,containers) => {
 export const getKeyOrIndex = (index = undefined,key = undefined,) => {
 
     if(index){
+        
         let container
-        if(index == 1){
+        let indexToBe = parseInt(index)
+        if(indexToBe === 1){
             container = 'to_do';
-        } else if(index == 2){
+        } else if(indexToBe === 2){
             container = 'in_progress';
         } else {
             container = 'completed';
@@ -30,9 +32,9 @@ export const getKeyOrIndex = (index = undefined,key = undefined,) => {
         return container
     } else {
         let container
-        if(key == 'to_do'){
+        if(key === 'to_do'){
             container = 1;
-        } else if(key == 'in_progress'){
+        } else if(key === 'in_progress'){
             container = 2;
         } else {
             container = 3;
@@ -68,13 +70,13 @@ export const getNewPriority = (destinationTask) => {
     let newPriority = {};
     destinationTask.map((task,index) => {
         newPriority[task.id] = destinationTask.length - index; 
+        //return true;
     })
 
     return newPriority;
 }
 
 export const reducer = (state, action) => {
-    console.log('state',state)
     return {
         ...state, 
         [action.type]:{

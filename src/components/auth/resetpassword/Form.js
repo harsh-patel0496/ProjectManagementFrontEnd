@@ -1,11 +1,11 @@
 import React, { lazy } from 'react'
-import TextField from '@material-ui/core/TextField';
+//import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import EmailIcon from '@material-ui/icons/Email';
-import LockIcon from '@material-ui/icons/Lock';
-import { makeStyles,withStyles } from '@material-ui/core/styles';
+//import LockIcon from '@material-ui/icons/Lock';
+import { makeStyles } from '@material-ui/core/styles';
 const CssTextField = lazy( 
     () => import('../../../utils/styledComponent/CssTextField')
 );
@@ -28,7 +28,7 @@ function Form(props) {
         handleSubmit,
         handleChange,
         handleBlur,
-        setFieldValue,
+        //setFieldValue,
         touched,
         errors
     } = props

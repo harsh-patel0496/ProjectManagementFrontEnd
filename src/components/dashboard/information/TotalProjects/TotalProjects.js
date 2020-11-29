@@ -1,8 +1,6 @@
 import React,{useContext} from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
-import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
+import { Grid, Typography, Avatar } from '@material-ui/core';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import { DashboardLayoutContext } from '../Layout'
 import { DashboardContext } from '../../index'
@@ -10,7 +8,6 @@ import withLayout from '../HOC/withLayout'
 import { useTotalProjectsStyle } from './useTotalProjectsStyle'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 const TotalProfit = props => {
-  const { className, ...rest } = props;
 
   const {
     classes

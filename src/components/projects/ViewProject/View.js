@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import  { Card,CardContent,CardHeader, Typography,Grid } from "@material-ui/core";
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 function View(props) {
     const classes = useStyles();
     const [projectFromRudux] = useProject()
-    const [project,setProject] = useState(projectFromRudux)
+    const [project] = useState(projectFromRudux)
     return (
         <div className={classes.root}>
             <Card>

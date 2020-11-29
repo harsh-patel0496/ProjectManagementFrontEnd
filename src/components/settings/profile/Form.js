@@ -1,13 +1,13 @@
 import React,{ lazy,useEffect,useState } from 'react'
 
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
+//import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { Typography } from '@material-ui/core';
-import { width } from '@material-ui/system';
+//import { width } from '@material-ui/system';
 import SubmitButton from '../../../utils/styledComponent/SubmitButton'
-import useAuthentication from '../../../hooks/useAuthentication';
+//import useAuthentication from '../../../hooks/useAuthentication';
 import useCompanyTypes from '../../../hooks/useCompanyTypes';
 import { apiCall } from '../../../utils/apiCall';
 const CssTextField = lazy( 
@@ -60,8 +60,8 @@ function Form(props) {
             })
         }
 
-    },[]);
-    const companyType = [{id: 1,title: "I.T Indestry"}]
+    },[companyTypesFromRudux,setCompanyTypesToRedux]);
+    //const companyType = [{id: 1,title: "I.T Indestry"}]
     //console.log(errors)
     return (
         <React.Fragment>

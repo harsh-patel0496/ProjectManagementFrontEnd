@@ -1,6 +1,6 @@
 import React,{lazy,useState,useEffect} from 'react'
 import {Grid ,Button} from '@material-ui/core';
-import SubmitButton from '../../../../utils/styledComponent/SubmitButton'
+//import SubmitButton from '../../../../utils/styledComponent/SubmitButton'
 import { apiCall } from '../../../../utils/apiCall'
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -23,7 +23,7 @@ function Form(props) {
         errors,
         setErrors,
         values,
-        label
+        //label
     } = props
 
     const [developers,setDevelopers] = useState([]);

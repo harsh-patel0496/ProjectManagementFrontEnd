@@ -61,7 +61,7 @@ function DialogComponent(props) {
     setOpen,
     children,
     title,
-    subtitle,
+    //subtitle,
     footerActions
   } = props;
   //const [open, setOpen] = React.useState(false);

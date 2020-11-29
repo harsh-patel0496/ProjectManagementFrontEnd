@@ -1,7 +1,14 @@
-import React,{useState,useEffect,useReducer} from 'react'
-import MaterialTable,{ MTableToolbar,MTableHeader } from 'material-table'
-import  { Card,CardContent,CardHeader, Typography } from "@material-ui/core";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import React,{
+    useState,
+    useEffect,
+    //useReducer
+} from 'react'
+import MaterialTable,{ 
+    MTableToolbar,
+    //MTableHeader 
+} from 'material-table'
+import  { Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import { apiCall } from '../../../utils/apiCall'
 import TaskStatus from './TaskStatus'
 const useStyles = makeStyles((theme) => ({

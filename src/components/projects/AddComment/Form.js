@@ -1,7 +1,8 @@
 import React,{lazy} from 'react'
-import {Grid ,Button} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import SubmitButton from '../../../utils/styledComponent/SubmitButton'
 import CommentIcon from '@material-ui/icons/Comment';
+import CircularStyledProgress from '../../../utils/styledComponent/CircularStyledProgress'
 
 const CssTextField = lazy( 
     () => import('../../../utils/styledComponent/CssTextField')
@@ -15,6 +16,7 @@ function Form(props) {
         handleBlur,
         touched,
         errors,
+        isLoading
     } = props;
     return (
         <form onSubmit={handleSubmit}>
@@ -54,10 +56,10 @@ function Form(props) {
                         variant="contained"
                         color="primary"
                         type="submit"
-                        startIcon={<CommentIcon />}
-                        //size="large"
+                        startIcon= {<CommentIcon />}
+                        disabled = {isLoading}
                     >
-                        Add Comment
+                        {isLoading ? 'Adding...' : 'Add Comment'}
                     </SubmitButton>
                 </Grid>
             </Grid>

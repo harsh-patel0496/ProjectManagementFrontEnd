@@ -1,4 +1,8 @@
-import React,{ useState,useEffect,useContext } from 'react'
+import React,{ 
+    //useState,
+    //useEffect,
+    useContext 
+} from 'react'
 import Form from './Form'
 import { Formik } from 'formik'
 import * as Yup from "yup";
@@ -12,10 +16,10 @@ function EditClient(props) {
         role,
         state,
         dispatch,
-        clients,
-        setClients,
-        setOpenClientDialog,
-        tableRef
+        // clients,
+        // setClients,
+        // setOpenClientDialog,
+        // tableRef
     } = useContext(ClientContext)
     
     const initialValues = {
@@ -36,7 +40,7 @@ function EditClient(props) {
     });
     const [setNotification] = useNotification();
     const handleEditCustomer = (values) => {
-        let tableData = values.tableData
+        //let tableData = values.tableData
         delete values.tableData;
         const data = {...values,role}
         const options = {

@@ -3,14 +3,14 @@ import React,{
     useEffect,
     useReducer
 } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+//import { makeStyles } from '@material-ui/core/styles';
 
 //MUI Components
 import {
     Grid,
 } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
+//import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import Typography from '@material-ui/core/Typography';
@@ -21,12 +21,16 @@ import { Divider } from '@material-ui/core'
 import RootRef from "@material-ui/core/RootRef";
 
 //React drag and drop component
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { resetServerContext } from "react-beautiful-dnd"
+import { 
+    DragDropContext, 
+    Droppable, 
+    //Draggable 
+} from "react-beautiful-dnd";
+//import { resetServerContext } from "react-beautiful-dnd"
 
 //Utiles(functions and static values)
 import { apiCall } from '../../utils/apiCall'
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
 import { selectContainer,getKeyOrIndex,reorder,getNewPriority } from './utils/actions'
 import {initialState} from './utils/initialState'
 
@@ -42,6 +46,7 @@ import DialogComponent from '../../utils/styledComponent/DialogComponent'
 //Custome Hooks
 import useProject from '../../hooks/useProject'
 import useNotification from '../../hooks/useNotification';
+import useComponentLoader from '../../hooks/useComponentLoader'
 
 const useStyles = useStyleTaskComponent;
 
@@ -49,9 +54,14 @@ const useStyles = useStyleTaskComponent;
 export const TaskContext = React.createContext();
 
 function Task(props) {
-    const {project} = props
-    const [projectFromRudux,setProjectToRedux] = useProject();
+    //const {project} = props
+    const [
+        projectFromRudux,
+        //setProjectToRedux
+    ] = useProject();
     const [setNotification] = useNotification();
+    const [setLoader] = useComponentLoader();
+
     const defaultState = {
         to_do: {
             slug: 'to_do',
@@ -152,7 +162,7 @@ function Task(props) {
 
     const handleAddTask = (values) => {
         let data = {...values,type: selectedContainer,project: projectFromRudux.id}
-        const container  = getKeyOrIndex(selectedContainer)
+        //const container  = getKeyOrIndex(selectedContainer)
         const options = {
             laraApp: true,
             method: 'post',
@@ -167,6 +177,7 @@ function Task(props) {
                 let container;
                 container = getKeyOrIndex(key)
                 dispatch({type: container,tasks: response.data.tasks[key]})
+                return true;
             })
             const notificationOptions = {
                 open: true,
@@ -174,17 +185,18 @@ function Task(props) {
                 type: 'success'
             }
             setNotification(notificationOptions);
+            
             handleCloseAddTaskDialog()
             //console.log(response)
         }).catch((error) => {
             console.log(error)
         })
-        console.log(data)
+        //console.log(data)
     }
 
     useEffect(() => {
         
-        if(props.history && props.history.action == "POP"){
+        if(props.history && props.history.action === "POP"){
             props.history.push('/projects')
         } else {
             const options = {
@@ -199,9 +211,15 @@ function Task(props) {
                     let container;
                     container = getKeyOrIndex(key)
                     dispatch({type: container,tasks: response.data.tasks[key]})
+                    //return true;
+                })
+                setLoader({
+                    open: false
                 })
             }).catch( error => {
-    
+                setLoader({
+                    open: false
+                })
             })
         }
         

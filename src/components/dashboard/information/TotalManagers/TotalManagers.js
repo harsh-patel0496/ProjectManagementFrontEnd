@@ -1,7 +1,6 @@
 import React,{useContext} from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
+import { Grid, Typography, Avatar } from '@material-ui/core';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import { DashboardLayoutContext } from '../Layout'
@@ -10,7 +9,6 @@ import withLayout from '../HOC/withLayout'
 import { useTotalUserStyle } from './useTotalUserStyle'
 
 const TotalManagers = props => {
-  const { ...rest } = props;
   
   const {
     classes
@@ -21,8 +19,7 @@ const TotalManagers = props => {
   } = useContext(DashboardContext)
 
   const totalUserClasses = useTotalUserStyle()
-  
-  console.log(primaryInfo)
+
   return (
     <React.Fragment>
         <Grid

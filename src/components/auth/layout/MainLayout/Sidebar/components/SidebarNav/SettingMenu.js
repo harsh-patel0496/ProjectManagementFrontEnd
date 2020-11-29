@@ -1,4 +1,4 @@
-import React,{useState,useContext} from 'react'
+import React,{useContext} from 'react'
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Button } from '@material-ui/core';
@@ -30,12 +30,12 @@ function SettingMenu(props) {
               activeClassName={classes.active}
               className={classes.button}
               component={CustomRouterLink}
-              to={page.collapse ? false : page.href}
+              to={page.collapse ? null : page.href}
               onClick={(event) => {
-                if(variant == 'temporary'){
+                if(variant === 'temporary'){
                   handleSidebarClose()
                 }
-                {!openSidebar && (page.collapse && handleMenuClick(event))}
+                !openSidebar && (page.collapse && handleMenuClick(event))
               }}
             >
               <div className={classes.icon}>{page.icon}</div>

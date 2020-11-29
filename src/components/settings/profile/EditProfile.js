@@ -1,38 +1,41 @@
-import React,{ useState,useEffect } from 'react'
+import React,{ 
+    useState,
+    //useEffect 
+} from 'react'
 import Form from './Form'
 import { Formik } from 'formik'
 import * as Yup from "yup";
 import { apiCall } from '../../../utils/apiCall';
 import useNotification from '../../../hooks/useNotification';
 import useAuthentication from '../../../hooks/useAuthentication';
-import useCompanyTypes from '../../../hooks/useCompanyTypes'
+//import useCompanyTypes from '../../../hooks/useCompanyTypes'
 
 function EditProfile(props) {
 
     const [setNotification] = useNotification();
     const [userFromRedux,setLogin,SetLogout,setUserToRedux] = useAuthentication();
     const [user,setUser] = useState(userFromRedux);
-    const [companyTypes,setCompanyTypes] = useState([]);
-    const [companyTypesFromRudux,setCompanyTypesToRedux] = useCompanyTypes();
-    useEffect(() => {
+    // const [companyTypes,setCompanyTypes] = useState([]);
+    // const [companyTypesFromRudux,setCompanyTypesToRedux] = useCompanyTypes();
+    // useEffect(() => {
 
-        if(companyTypesFromRudux && companyTypesFromRudux.length > 0){
-            setCompanyTypes(companyTypesFromRudux)
-        } else {
-            const options = {
-                method: 'get',
-                url: '/companyTypes'
-            }
-            apiCall(options).then( response => {
-                const companyTypes = response.data.companyTypes
-                setCompanyTypesToRedux(companyTypes)
-                setCompanyTypes(companyTypes)
-            }).catch( error => {
-                console.log(error)
-            })
-        }
+    //     if(companyTypesFromRudux && companyTypesFromRudux.length > 0){
+    //         setCompanyTypes(companyTypesFromRudux)
+    //     } else {
+    //         const options = {
+    //             method: 'get',
+    //             url: '/companyTypes'
+    //         }
+    //         apiCall(options).then( response => {
+    //             const companyTypes = response.data.companyTypes
+    //             setCompanyTypesToRedux(companyTypes)
+    //             setCompanyTypes(companyTypes)
+    //         }).catch( error => {
+    //             console.log(error)
+    //         })
+    //     }
 
-    },[]);
+    // },[]);
     const requiredAuthMsg ='This field is required'
     const validationSchema = Yup.object({
         name: Yup.string()

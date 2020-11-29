@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { useTheme } from '@material-ui/styles';
-import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
+import { Grid, Typography, Avatar } from '@material-ui/core';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import { DashboardLayoutContext } from '../Layout'
@@ -11,7 +9,6 @@ import withLayout from '../HOC/withLayout'
 import { useBadgetStyle } from './useBadgetStyle'
 
 const Budget = props => {
-  const { ...rest } = props;
   
   const {
     classes

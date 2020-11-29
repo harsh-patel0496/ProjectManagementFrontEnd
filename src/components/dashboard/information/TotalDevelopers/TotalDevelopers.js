@@ -1,8 +1,6 @@
 import React,{useContext} from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
-import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
+import { Grid, Typography, Avatar } from '@material-ui/core';
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import { DashboardLayoutContext } from '../Layout'
 import { DashboardContext } from '../../index'
@@ -10,7 +8,6 @@ import withLayout from '../HOC/withLayout'
 import { useTotalProfitStyle } from './useTotalProfitStyle'
 
 const TotalDevelopers = props => {
-  const { className, ...rest } = props;
 
   const {
     classes

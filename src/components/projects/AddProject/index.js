@@ -1,13 +1,14 @@
-import React,{ useState,useEffect,useContext } from 'react'
+import React,{ useState,useContext } from 'react'
 import Form from './Form'
 import { Formik } from 'formik'
 import * as Yup from "yup";
 import { apiCall } from '../../../utils/apiCall';
-import { ClientContext } from '../List'
+//import { ClientContext } from '../List'
 import useNotification from '../../../hooks/useNotification';
-import  { Card,CardContent,CardHeader,CardMedia } from "@material-ui/core";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import  { Card,CardContent,CardHeader } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import { ProjectContext } from '../List'
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,6 +34,8 @@ function AddProject(props) {
         projects,
         setProjects
     } = useContext(ProjectContext)
+
+    const [isLoading,setIsLoading] = useState(false)
     const classes = useStyles();
     const initialValues = {
         title: '',
@@ -56,6 +59,7 @@ function AddProject(props) {
     });
     const [setNotification] = useNotification();
     const handleAddProject = (values) => {
+        setIsLoading(true)
         const data = {...values}
         const options = {
             method: 'post',
@@ -66,6 +70,7 @@ function AddProject(props) {
         };
 
         apiCall(options).then( response => {
+            setIsLoading(false)
             if(response.data && response.data.project){
                 const oldProjects = projects
                 oldProjects.splice(0,0,response.data.project)
@@ -82,6 +87,7 @@ function AddProject(props) {
                 setNotification(notificationOptions);
             }
         }).catch( error => {
+            setIsLoading(false)
             console.log(error)
         })
     }
@@ -100,7 +106,7 @@ function AddProject(props) {
                 />
                 <CardContent>
                     <Formik
-                        children = {(props) => (<Form {...props}/>)}
+                        children = {(props) => (<Form {...props} isLoading={isLoading}/>)}
                         initialValues={initialValues}
                         validationSchema={validationSchema}
                         onSubmit = { values => {

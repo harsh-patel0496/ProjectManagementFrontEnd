@@ -1,5 +1,8 @@
 import React,{useState,useEffect,useReducer} from 'react'
-import MaterialTable,{ MTableToolbar,MTableHeader } from 'material-table'
+import MaterialTable,{ 
+    MTableToolbar,
+    //MTableHeader 
+} from 'material-table'
 import DialogComponent from '../../../utils/styledComponent/DialogComponent'
 import AddClient from './AddClient'
 import EditClient from './EditClient'

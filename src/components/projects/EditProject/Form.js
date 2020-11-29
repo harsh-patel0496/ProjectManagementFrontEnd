@@ -1,6 +1,6 @@
 import React,{lazy,useState,useEffect} from 'react'
 import {Grid ,Button} from '@material-ui/core';
-import SubmitButton from '../../../utils/styledComponent/SubmitButton'
+//import SubmitButton from '../../../utils/styledComponent/SubmitButton'
 import { apiCall } from '../../../utils/apiCall'
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -8,10 +8,11 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import { Field } from "formik";
 import DateFnsUtils from '@date-io/date-fns';
+import CircularStyledProgress from '../../../utils/styledComponent/CircularStyledProgress'
 import {
     MuiPickersUtilsProvider,
     DatePicker,
-    KeyboardDatePicker,
+    //KeyboardDatePicker,
 } from '@material-ui/pickers';
 
 const CssTextField = lazy( 
@@ -31,7 +32,8 @@ function Form(props) {
         setFieldValue,
         touched,
         errors,
-        setErrors,
+        isLoading,
+        //setErrors,
         values
     } = props
 
@@ -55,27 +57,27 @@ function Form(props) {
         })
     },[])
 
-    const validateUniqueName = () => {
-        const options = {
-            url: '/teams/validateTeamName',
-            method: 'post',
-            data: {
-                data: {
-                    name: values.name
-                }
-            }
-        }
-        apiCall(options).then((response) => {
-            if(response.data.status){
-                delete errors.name
+    // const validateUniqueName = () => {
+    //     const options = {
+    //         url: '/teams/validateTeamName',
+    //         method: 'post',
+    //         data: {
+    //             data: {
+    //                 name: values.name
+    //             }
+    //         }
+    //     }
+    //     apiCall(options).then((response) => {
+    //         if(response.data.status){
+    //             delete errors.name
                 
-            } else {
-                setErrors({...errors,name:response.data.message})
-            }
-        }).catch((error) => {
-            setErrors({...errors,name:"The name has already been used."})
-        })
-    }
+    //         } else {
+    //             setErrors({...errors,name:response.data.message})
+    //         }
+    //     }).catch((error) => {
+    //         setErrors({...errors,name:"The name has already been used."})
+    //     })
+    // }
     
     const DatePickerField = ({ field, form, ...other }) => {
         return(<DatePicker
@@ -261,6 +263,8 @@ function Form(props) {
                             color="primary"
                             type="submit"
                             size="large"
+                            disabled = {isLoading}
+                            endIcon={isLoading && <CircularStyledProgress />}
                         >
                             {`Edit Project`}
                         </Button>

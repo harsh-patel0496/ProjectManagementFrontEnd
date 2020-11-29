@@ -1,4 +1,4 @@
-import React,{ useState,useEffect,useContext } from 'react'
+import React,{ useState,useContext } from 'react'
 import Form from './Form'
 import { Formik } from 'formik'
 import * as Yup from "yup";
@@ -21,8 +21,10 @@ function AddComment(props) {
             .required(requiredAuthMsg)
     });
     const [setNotification] = useNotification();
-    
+    const [isLoading,setIsLoading] = useState(false)
+
     const handleAddComment = (values) => {
+        setIsLoading(true)
         const dataToSave = {...values,project: selectedProject.project}
         const options = {
             method: "post",
@@ -33,7 +35,7 @@ function AddComment(props) {
         }
 
         apiCall(options).then( response => {
-
+            setIsLoading(false)
             setIsOpenAddCommentDialog(false);
             const notificationOptions = {
                 open: true,
@@ -42,6 +44,7 @@ function AddComment(props) {
             }
             setNotification(notificationOptions);
         }).catch( error => {
+            setIsLoading(false)
             const notificationOptions = {
                 open: true,
                 message: 'Something went wrong!',
@@ -55,7 +58,7 @@ function AddComment(props) {
     return (
         <div>
              <Formik
-                children = {(props) => (<Form {...props}/>)}
+                children = {(props) => (<Form {...props} isLoading={isLoading}/>)}
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit = { values => {

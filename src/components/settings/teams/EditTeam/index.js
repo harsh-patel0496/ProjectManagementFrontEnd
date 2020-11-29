@@ -1,4 +1,4 @@
-import React,{ useState,useEffect,useContext } from 'react'
+import React,{ useContext } from 'react'
 import Form from './Form'
 import { Formik } from 'formik'
 import * as Yup from "yup";
@@ -10,20 +10,20 @@ function AddTeam(props) {
 
     const {
         label,
-        role,
         state,
         dispatch,
-        clients,
-        setClients,
-        setOpenAddTeamDialog,
-        tableRef
+        // role,
+        // clients,
+        // setClients,
+        // setOpenAddTeamDialog,
+        // tableRef
     } = useContext(TeamContext)
     
     const initialValues = {
         ...state.team
     }
 
-    const [isUniqueName,setIsUniqueName] = useState(false)
+    //const [isUniqueName,setIsUniqueName] = useState(false)
     const requiredAuthMsg ='This field is required'
     const validationSchema = Yup.object().shape({
         name: Yup.string()

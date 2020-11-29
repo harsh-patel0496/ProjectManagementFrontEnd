@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
-import { Typography, Link, Snackbar, SnackbarContent, Slide, IconButton } from '@material-ui/core';
+import { Snackbar, SnackbarContent, Slide, IconButton } from '@material-ui/core';
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import CloseIcon from "@material-ui/icons/Close";
 import InfoIcon from "@material-ui/icons/Info";

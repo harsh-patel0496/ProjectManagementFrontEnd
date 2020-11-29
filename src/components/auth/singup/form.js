@@ -7,6 +7,8 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import useCompanyTypes from '../../../hooks/useCompanyTypes'
 import { apiCall } from '../../../utils/apiCall'
+
+import CircularStyledProgress from '../../../utils/styledComponent/CircularStyledProgress'
 const CssTextField = lazy( 
     () => import('../../../utils/styledComponent/CssTextField')
 );
@@ -31,7 +33,8 @@ function Form(props) {
         handleBlur,
         setFieldValue,
         touched,
-        errors
+        errors,
+        isLoading
     } = props
 
     const classes = useStyles();
@@ -51,11 +54,11 @@ function Form(props) {
                 setCompanyTypesToRedux(companyTypes)
                 setCompanyTypes(companyTypes)
             }).catch( error => {
-                console.log(error)
+                //console.log(error)
             })
         }
 
-    },[]);
+    },[companyTypesFromRudux,setCompanyTypesToRedux]);
 
     return (
         <form 
@@ -236,6 +239,8 @@ function Form(props) {
                         color="primary"
                         type="submit"
                         size="large"
+                        disabled = {isLoading}
+                        endIcon={isLoading && <CircularStyledProgress />}
                     >
                         Signup
                     </Button>

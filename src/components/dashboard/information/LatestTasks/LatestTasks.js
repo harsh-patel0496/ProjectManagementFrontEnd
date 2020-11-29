@@ -32,25 +32,34 @@ const LatestTasks = props => {
   const { className, ...rest } = props;
 
   const classes = useStyles();
-
+  const config = {
+    barThickness: 10,
+    maxBarThickness: 8,
+    barPercentage: 0.5,
+    categoryPercentage: 0.5,
+  }
   const [data,setData] = useState({
     datasets: [
     {
+      ...config,
       label: 'Pending',
       backgroundColor: "#00d0bd",
       data: []
     },
     {
+      ...config,
       label: 'In Progress',
       backgroundColor: "#5D92F4",
       data: []
     },
     {
+      ...config,
       label: 'Completed',
       backgroundColor: "#00D014",
       data: []
     },
     {
+      ...config,
       label: 'Cancelled',
       backgroundColor: "#ff3739",
       data: []

@@ -35,7 +35,8 @@ function TaskStatus(props) {
             />
             return render
     }
-    return ( render )
+    
+    return render
 }
 
 export default TaskStatus

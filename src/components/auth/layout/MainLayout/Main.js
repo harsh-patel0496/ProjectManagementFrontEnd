@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+
+
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+//import clsx from 'clsx';
 import { useTheme } from '@material-ui/styles';
 import { useMediaQuery } from '@material-ui/core';
 import Sidebar from './Sidebar/index';
 import Topbar from './Topbar/index'
 //import Footer from './Footer/index'
 import { Scrollbars } from 'react-custom-scrollbars';
-import CssBaseline from '@material-ui/core/CssBaseline';
+//import CssBaseline from '@material-ui/core/CssBaseline';
 import {useMainLayoutStyles} from '../../../../assets/css/mainLayout'
 import Notification from '../../../../utils/styledComponent/Notification'
+import ComponentLoader from '../../../../utils/styledComponent/ComponentLoader'
+import useComponentLoader from '../../../../hooks/useComponentLoader'
 
 export const NavigationContext = React.createContext();
 const Main = props => {
@@ -34,7 +38,7 @@ const Main = props => {
   const handleToggleDrawer = () => {
     setOpenSidebar(!openSidebar)
   }
-  const shouldOpenSidebar = isDesktop ? true : openSidebar;
+  //const shouldOpenSidebar = isDesktop ? true : openSidebar;
 
   
   const contextValue = {
@@ -45,6 +49,12 @@ const Main = props => {
     variant: isDesktop ? 'permanent' : 'temporary'
   }
 
+  const [setLoader] = useComponentLoader()
+
+  useEffect(() => {
+    setLoader({open: true})
+  },[setLoader])
+  
   return (
     
     <div
@@ -54,6 +64,7 @@ const Main = props => {
       <NavigationContext.Provider value={contextValue}>
         {/* <Topbar onSidebarOpen={handleSidebarOpen} openSidebar={openSidebar} handleToggleDrawer={handleToggleDrawer} {...children.props} /> */}
         <Topbar {...children.props} />
+        
         {/* <Sidebar
           onClose={handleSidebarClose}
           open={openSidebar}
@@ -68,6 +79,7 @@ const Main = props => {
       >
         <main className={classes.content}>
           <div className={classes.toolbar} />
+            <ComponentLoader />
             <Notification />
             {children}
             {/* <Footer /> */}

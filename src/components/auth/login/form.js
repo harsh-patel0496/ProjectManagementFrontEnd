@@ -1,13 +1,15 @@
 import React, { lazy } from 'react'
-import TextField from '@material-ui/core/TextField';
+//import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
 import SubmitButton from '../../../utils/styledComponent/SubmitButton'
-import { makeStyles,withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import CustomRouterLink from '../layout/CustomRouterLink'
+
+import CircularStyledProgress from '../../../utils/styledComponent/CircularStyledProgress'
 const CssTextField = lazy( 
     () => import('../../../utils/styledComponent/CssTextField')
 );
@@ -30,7 +32,7 @@ function Form(props) {
         handleSubmit,
         handleChange,
         handleBlur,
-        setFieldValue,
+        isLoading,
         touched,
         errors
     } = props
@@ -110,6 +112,8 @@ function Form(props) {
                         color="primary"
                         type="submit"
                         size="large"
+                        disabled = {isLoading}
+                        endIcon={isLoading && <CircularStyledProgress />}
                     >
                         Login
                     </Button>

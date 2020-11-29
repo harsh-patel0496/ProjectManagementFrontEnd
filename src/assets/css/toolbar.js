@@ -7,7 +7,7 @@ export const useToolbarStyles = makeStyles(theme => ({
       [theme.breakpoints.down('md')]: {
         width: `calc(100% - ${0}px)`,
       },
-      width: `calc(100% - ${240 - 168}px)`,
+      width: `calc(100% - ${241}px)`,
       //left: `5.35%`,
       //marginLeft: '275px',
       zIndex: theme.zIndex.drawer + 1,
@@ -18,7 +18,7 @@ export const useToolbarStyles = makeStyles(theme => ({
     },
     appBarShift: {
       left: 'auto',
-      marginLeft: 240,
+      marginLeft: 241,
       width: `calc(100% - ${240}px)`,
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,

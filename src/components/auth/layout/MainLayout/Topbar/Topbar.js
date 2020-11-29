@@ -1,12 +1,12 @@
 import React, { useState,useContext } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+//import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { AppBar, Toolbar, Badge, Hidden, IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
-import { connect } from 'react-redux'
+//import { connect } from 'react-redux'
 import {useToolbarStyles} from '../../../../../assets/css/toolbar'
 import { NavigationContext } from '../Main'
 import useAuthentication from '../../../../../hooks/useAuthentication'

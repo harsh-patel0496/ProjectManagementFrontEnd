@@ -1,11 +1,11 @@
 import React,{useState,useEffect} from 'react'
 import Project from './Project'
 import Grid from "@material-ui/core/Grid";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import  { Card,CardContent,CardHeader, Typography } from "@material-ui/core";
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import SubmitButton from '../../utils/styledComponent/SubmitButton'
-import Drawer from '@material-ui/core/Drawer';
+//import Drawer from '@material-ui/core/Drawer';
 import AddProject from './AddProject'
 import EditProject from './EditProject'
 import DrawerLayout from './DrawerLayout'
@@ -14,7 +14,7 @@ import DialogComponent from '../../utils/styledComponent/DialogComponent'
 import AddComment from './AddComment'
 import CommentList from './CommentList'
 import useProject from '../../hooks/useProject'
-
+import useComponentLoader from '../../hooks/useComponentLoader'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
 
 export const ProjectContext = React.createContext();
 function List(props) {
-    const list = [1,2,3,4,5,6,7,8,9,10]
     const classes = useStyles();
     const [isOpen,setIsOpen] = useState(false)
     const [projects,setProjects] = useState([]);
@@ -43,6 +42,7 @@ function List(props) {
     const [isOpenListCommentDialog,setIsOpenListCommentDialog] = useState(false)
 
     const [projectFromRudux,setProjectToRedux] = useProject();
+    const [setLoader] = useComponentLoader();
 
     const handleEditProject = (project,index) => {
         toggleDrawer('edit')
@@ -90,13 +90,14 @@ function List(props) {
             apiCall(options).then( response => {
                 if(response.data && response.data.projects){
                     setProjects(response.data.projects)
+                    setLoader({open:false})
                 }
                 
             }).catch( error => {
-
+                setLoader({open:false})
             })
         }
-    },[projects])
+    },[projects,setLoader])
 
     const ProjectContextValue = {
         projects,
@@ -114,7 +115,8 @@ function List(props) {
         isOpenAddCommentDialog,
         setIsOpenAddCommentDialog,
         isOpenListCommentDialog,
-        setIsOpenListCommentDialog
+        setIsOpenListCommentDialog,
+        projectFromRudux
     };
     return (
         <div className={classes.root}>

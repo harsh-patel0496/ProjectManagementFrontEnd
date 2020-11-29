@@ -4,10 +4,10 @@ import { TotalManagers }  from './information/TotalManagers'
 import { TotalDevelopers }  from './information/TotalDevelopers'
 import { TotalProjects }  from './information/TotalProjects'
 import { LatestTasks } from './information/LatestTasks'
-import Layout from './information/Layout'
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 import { apiCall } from '../../utils/apiCall'
+import useComponentLoader from '../../hooks/useComponentLoader'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -21,6 +21,7 @@ function Dashboard(props) {
 
     const classes = useStyles();
     const [primaryInfo,setPrimaryInfo] = useState({})
+    const [setLoader] = useComponentLoader()
 
     useEffect(() => {
         const options = {
@@ -37,11 +38,17 @@ function Dashboard(props) {
                     projectCount: response.data.assembly.projects_count
                 }
                 setPrimaryInfo({...info});
+                setLoader({
+                    open: false
+                })
             }
         }).catch( error => {
+            setLoader({
+                open: false
+            })
             console.log(error)
         })
-    },[])
+    },[setLoader])
 
     const DashboardContextValue = {
         primaryInfo

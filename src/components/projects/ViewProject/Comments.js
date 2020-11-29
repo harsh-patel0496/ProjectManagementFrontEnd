@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import { apiCall } from '../../../utils/apiCall'
 import  { Card,CardContent,CardHeader, Typography } from "@material-ui/core";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
@@ -54,7 +54,8 @@ function Comments(props) {
             setLoading(false)
             console.log(error)
         })
-    },[])
+    },[project])
+    
     return (
         <Card className={classes.root}>
             <CardHeader

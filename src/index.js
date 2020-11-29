@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './redux/index'
 import { Provider } from "react-redux";
+import { initiateChannel } from './utils/initiateChannel'
 
 const render = () => {
   return (
@@ -22,10 +23,11 @@ const render = () => {
 
 let user = localStorage.getItem('user');
 
-if (user != "" && user != undefined) {
+if (user !== "" && user !== undefined) {
   user = JSON.parse(user);
   if(user && user.token){
     store.dispatch({type:'SET_LOGIN',payload:user})
+    //initiateChannel();
     render()
   } else {
     render()

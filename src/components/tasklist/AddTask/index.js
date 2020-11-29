@@ -1,17 +1,9 @@
 import React,{useContext} from 'react'
-import { Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-    Slide,
-    Typography, } from '@material-ui/core';
 
 import { Formik } from 'formik'
 import * as Yup from "yup"
-import { apiCall } from '../../../utils/apiCall'
-import { connect } from 'react-redux'
+//import { apiCall } from '../../../utils/apiCall'
+//import { connect } from 'react-redux'
 import Form from './Form'
 import { TaskContext } from '../Task'
 
@@ -29,15 +21,15 @@ const validationSchema = Yup.object({
             .required(requiredAuthMsg),
 });
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-});
+// const Transition = React.forwardRef(function Transition(props, ref) {
+//     return <Slide direction="up" ref={ref} {...props} />;
+// });
 
 function AddTask(props) {
     const {
         handleAddTask,
-        openAddTaskDialog,
-        handleCloseAddTaskDialog
+        // openAddTaskDialog,
+        // handleCloseAddTaskDialog
     } = useContext(TaskContext)
 
     return (

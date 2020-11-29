@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
 import { makeStyles,useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
+//import CardActionArea from '@material-ui/core/CardActionArea';
+//import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
+//import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import EditProfile from './EditProfile';
 import Clients from '../clients'
@@ -15,7 +15,8 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import GroupWorkIcon from '@material-ui/icons/GroupWork';
-import { Paper,
+import { 
+    //Paper,
     Tabs,
     Tab, 
     Divider,
@@ -102,9 +103,9 @@ function Profile(props) {
         setValue(newValue);
     };
 
-    const handleChangeIndex = (index) => {
-        setValue(index);
-    };
+    // const handleChangeIndex = (index) => {
+    //     setValue(index);
+    // };
     useEffect(() => {
         window.dispatchEvent(new CustomEvent("resize"));
       }, []);

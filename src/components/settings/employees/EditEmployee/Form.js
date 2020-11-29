@@ -1,6 +1,6 @@
 import React,{lazy} from 'react'
 import {Grid ,Button} from '@material-ui/core';
-import SubmitButton from '../../../../utils/styledComponent/SubmitButton'
+//import SubmitButton from '../../../../utils/styledComponent/SubmitButton'
 const CssTextField = lazy( 
     () => import('../../../../utils/styledComponent/CssTextField')
 );
@@ -10,11 +10,11 @@ function Form(props) {
         handleSubmit,
         handleChange,
         handleBlur,
-        setFieldValue,
+        //setFieldValue,
         touched,
         errors,
         values,
-        label
+        //label
     } = props
     return (
         <form 

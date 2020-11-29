@@ -1,4 +1,8 @@
-import React,{ useState,useEffect,useContext } from 'react'
+import React,{ 
+    //useState,
+    //useEffect,
+    useContext 
+} from 'react'
 import Form from './Form'
 import { Formik } from 'formik'
 import * as Yup from "yup";
@@ -11,11 +15,11 @@ function AddClient(props) {
     const {
         role,
         state,
-        dispatch,
-        clients,
-        setClients,
+        // dispatch,
+        // clients,
+        // setClients,
         setOpenClientDialog,
-        tableRef
+        //tableRef
     } = useContext(ClientContext)
     
     const initialValues = {
